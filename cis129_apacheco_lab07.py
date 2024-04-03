@@ -1,7 +1,105 @@
+'''
+#Author: Anthony Pacheco 
+#Class: CIS 129
+#Project: Lab 06
+#Date: 04/02/2024
+#Discription:You can run this program in 2 way. First way is to gather total number of ticket sold in each section to calculate total income.
+Second way is to enter ticket as they are sold. It use custome function to check all peramiter to validate user input. D section can be esily add by copying
+and pasteing fuction call and changing them to d section.
 
+D = 0
+D_TOTAL_SEAT = 200
+D_PRICE = 10
+d_total_income = 0
+d_counter = 0
+d_ticket_left = D_TOTAL_SEAT - d_counter
 
+while loop 1
+d_counter, d_total_income = total_section_d(ad_counter,d_total_income,D_PRICE,D_TOTAL_SEAT)
+ 
+def total_section_d(d_counter,d_total_income,D_PRICE,D_TOTAL_SEAT):
+    #
+    while True:
+        try:
+            print('Enter (-99) for zero and no entry.')
+            d_counter = get_positive_integer('How many ticket were sold in section D?: ')
+            
+            if d_counter == -99 :
+                d_counter = 0
+                d_total_income = 0.00
+                print(f'Total income for section D is ${d_total_income:0.2f}')
+                return d_counter, d_total_income
+            elif d_counter <= A_TOTAL_SEAT :
+                d_total_income = Decimal(d_counter * D_PRICE)
+                print(f'Total income for section D is ${d_total_income:0.2f}')
+                return d_counter, d_total_income
+               
+            else:
+                d_counter = D_TOTAL_SEAT - d_counter
+                over_stack = d_counter * -1
+                print('Incorrect data entered. Section A only has',D_TOTAL_SEAT,'seats avaliable. Your are over by',over_stack ,'seats.')
+        except ValueError:
+            print(a_counter)
+            print('Incorrect Data entered, please re-attempt')
 
+while lopp 2
+print(f'Ticket for section D are ${D_PRICE} per seat.\nThere are currently {d_ticket_left} seats left in section D.\n')
 
+elif user_input.lower() == 'd':
+
+d_counter,d_ticket_left,d_total_income = section_d(d_counter,d_ticket_left,d_total_income,D_PRICE,D_TOTAL_SEAT)
+
+def section_d(d_counter,d_ticket_left,d_total_income,D_PRICE,D_TOTAL_SEAT):
+    
+    get_dash()
+    print('There are',d_ticket_left, 'seats left.\n')
+    print(f'Ticket for section A are ${D_PRICE:0.2f} per seat.\n')
+        
+        
+    while d_counter <= D_TOTAL_SEAT:
+
+        if d_ticket_left == 0:
+            print('Sorry, there are no more ticket avaibale in this section.')
+            return d_counter, d_ticket_left, d_total_income 
+
+        d_ticket = get_positive_integer('How many ticket would you like to purshase?')
+
+        if d_ticket == -99:
+            return d_counter, d_ticket_left, d_total_income 
+     
+        d_counter += d_ticket
+        
+        d_ticket_left = D_TOTAL_SEAT - d_counter
+        
+        over_stack = d_ticket_left * -1
+        while d_counter > D_TOTAL_SEAT:
+
+            d_counter -= d_ticket
+            d_ticket_left = D_TOTAL_SEAT + d_counter
+
+            print('Sorry, your over by',over_stack ,' seat.')
+            print('If you would like to choose another section (enter -99).\nIf not, please try again. The number of seat remaining are',d_ticket_left)
+            d_ticket = get_positive_integer('How many ticket would you like to purshase?')
+            
+            d_counter += d_ticket
+            d_ticket_left = D_TOTAL_SEAT - d_counter
+            
+        total_price = Decimal(d_ticket * D_PRICE)
+        print(f'You\'er total is ${total_price:0.2f}')            
+        d_total_income += total_price
+        
+        
+        return d_counter, d_ticket_left, d_total_income
+add on to def get_section(message):
+    elif user_input.lower() == 'd':
+        return user_input
+        
+add on to def results(d_counter,d_total_income)
+print(f'The total amount of ticket sold for section D were {d_counter}.\nWith a total income of ${d_total_income:0.2f}')
+
+#Volume: 15
+'''
+#------------------------------------------------------------------------------------------------------------------------------------------
 
 from decimal import Decimal
 
@@ -33,12 +131,13 @@ def main():
         c_counter = 0
         c_ticket_left = C_TOTAL_SEAT - c_counter
 
+
         get_dash()
         print('Welcome, to Who Named it Theater!!\n')
-        print('You can run this program in 2 way.\nFirst way is to gather total number of ticket sold in each section to calculate total income.\n Second way is to enter ticket as they are sold.')
+        print('You can run this program in 2 way.\nFirst way is to gather total number of ticket sold in each section to calculate total income.\nSecond way is to enter ticket as they are sold.')
 
     
-        QUIT = program('Enter (-99) To quit this program.\nEnter (1) To get total amount of ticket for each section and calculate total income.\nEnter (2) To enter tickets as you go.\n')
+        QUIT = program('\nEnter (-99) To quit this program.\nEnter (1) To get total amount of ticket for each section and calculate total income.\nEnter (2) To enter tickets as you go.\n')
         get_dash()
         while QUIT == 1 or QUIT == 'no':
             get_dash()
@@ -116,15 +215,15 @@ def main():
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def total_section_a(a_counter,a_total_income,A_PRICE,A_TOTAL_SEAT):
-    #
+    #This will calculate total income of total ticket sold 
     while True:
         try:
             print('Enter (-99) for zero and no entry.')
             a_counter = get_positive_integer('How many ticket were sold in section A?: ')
             
             if a_counter == -99 :
-                a_counter = 'No Entry'
-                a_total_income = 0.00
+                a_counter = 0
+                a_total_income = Decimal(0)
                 print(f'Total income for section A is ${a_total_income:0.2f}')
                 return a_counter, a_total_income
             elif a_counter <= A_TOTAL_SEAT :
@@ -144,7 +243,7 @@ def total_section_a(a_counter,a_total_income,A_PRICE,A_TOTAL_SEAT):
 
                    
 def section_a(a_counter,a_ticket_left,a_total_income,A_PRICE,A_TOTAL_SEAT):
-    
+    # #This will calculate tickets as ticket are sold to calculate total income of total ticket sold 
     get_dash()
     print('There are',a_ticket_left, 'seats left.\n')
     print(f'Ticket for section A are ${A_PRICE:0.2f} per seat.\n')
@@ -196,13 +295,14 @@ def section_a(a_counter,a_ticket_left,a_total_income,A_PRICE,A_TOTAL_SEAT):
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 def total_section_b(b_counter,b_total_income,B_PRICE,B_TOTAL_SEAT):
-    #This will calculate 
+    #This will calculate total income of total ticket sold 
     while True:
         try:
+            print('Enter (-99) for zero and no entry.')
             b_counter = get_positive_integer('How many ticket were sold in section B?: ')
             if b_counter == -99:
-                b_counter = 'No Entry'
-                b_total_income = 0.00
+                b_counter = 0
+                b_total_income = Decimal(0)
                 print(f'Total income for section B is ${b_total_income:0.2f}')
                 return b_counter, b_total_income
             elif b_counter <= B_TOTAL_SEAT :
@@ -220,7 +320,7 @@ def total_section_b(b_counter,b_total_income,B_PRICE,B_TOTAL_SEAT):
         
 
 def section_b(b_counter,b_ticket_left,b_total_income,B_PRICE,B_TOTAL_SEAT):
-
+    # #This will calculate tickets as ticket are sold to calculate total income of total ticket sold
     get_dash()
     print('There are',b_ticket_left, 'seats left.\n')
     print(f'Ticket for section B are ${B_PRICE:0.2f} per seat.\n')
@@ -274,21 +374,22 @@ def section_b(b_counter,b_ticket_left,b_total_income,B_PRICE,B_TOTAL_SEAT):
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def total_section_c(c_counter,c_ticket_left,c_total_income,C_PRICE,C_TOTAL_SEAT):
-    #
+def total_section_c(c_counter,c_total_income,C_PRICE,C_TOTAL_SEAT):
+    #This will calculate total income of total ticket sold 
     while True:
         try:
+            print('Enter (-99) for zero and no entry.')
             c_counter = get_positive_integer('How many ticket were sold in section C?: ')
             if c_counter == -99:
-                c_counter = 'No Entry'
-                c_total_income = 0.00
+                c_counter = 0
+                c_total_income = Decimal(0)
                 print(f'Total income for section C is ${c_total_income:0.2f}')
-                return c_counter, c_total_income, c_total_income
+                return c_counter, c_total_income
             
             elif c_counter <= C_TOTAL_SEAT:
                 c_total_income = Decimal(c_counter * C_PRICE)
                 print(f'Total income for section C is ${c_total_income:0.2f}')
-                return c_counter, c_total_income, c_total_income
+                return c_counter, c_total_income
             else:
                 c_counter = C_TOTAL_SEAT - c_counter
                 over_stack = c_counter * -1
@@ -299,7 +400,7 @@ def total_section_c(c_counter,c_ticket_left,c_total_income,C_PRICE,C_TOTAL_SEAT)
 
 
 def section_c(c_counter,c_ticket_left,c_total_income,C_PRICE,C_TOTAL_SEAT):
-
+    # #This will calculate tickets as ticket are sold to calculate total income of total ticket sold
     get_dash()
     print('There are',c_ticket_left, 'seats left.\n')
     print('Ticket for section C are',C_PRICE,'per seat.\n')
@@ -324,9 +425,6 @@ def section_c(c_counter,c_ticket_left,c_total_income,C_PRICE,C_TOTAL_SEAT):
         
         c_ticket_left = C_TOTAL_SEAT - c_counter
         
-        print(c_ticket_left)
-        print(c_counter)
-
         over_stack = c_ticket_left * -1
         while c_counter > C_TOTAL_SEAT:
 
@@ -340,8 +438,6 @@ def section_c(c_counter,c_ticket_left,c_total_income,C_PRICE,C_TOTAL_SEAT):
             c_counter += c_ticket
             c_ticket_left = C_TOTAL_SEAT - c_counter
 
-            print(c_ticket_left)
-            print(c_counter)
         total_price = Decimal(c_ticket * C_PRICE)
         print(f'You\'er total is ${total_price:0.2f}')            
         c_total_income += total_price
@@ -434,11 +530,11 @@ def yes_no(message):
             
 def results(a_counter,b_counter,c_counter,a_total_income,b_total_income,c_total_income):
     # Display results
-    print(f'The total amount of ticket sold for section A were {a_counter}.\nWith a total income of ${a_total_income:0.2f}')
-    print(f'The total amount of ticket sold for section B were {b_counter}.\nWith a total income of ${b_total_income:0.2f}')
-    print(f'The total amount of ticket sold for section C were {c_counter}.\nWith a total income of ${c_total_income:0.2f}')
+    print(f'The total amount of ticket sold for section A were {a_counter}.\nWith a total income of ${a_total_income:0.2f}\n')
+    print(f'The total amount of ticket sold for section B were {b_counter}.\nWith a total income of ${b_total_income:0.2f}\n')
+    print(f'The total amount of ticket sold for section C were {c_counter}.\nWith a total income of ${c_total_income:0.2f}\n')
     total_ticket = a_counter + b_counter + c_counter
-    total_income = a_total_income + b_total_income + c_total_income
+    total_income = Decimal(a_total_income + b_total_income + c_total_income)
     print(f'The total amount of ticket sold {total_ticket} and total income is ${total_income:0.2f}')
     return 
 
